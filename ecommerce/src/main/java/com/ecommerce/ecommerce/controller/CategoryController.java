@@ -3,10 +3,10 @@ package com.ecommerce.ecommerce.controller;
 import com.ecommerce.ecommerce.dto.CategoryDto;
 import com.ecommerce.ecommerce.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @RestController
@@ -24,7 +24,7 @@ public class CategoryController {
     }
 
     @GetMapping("test")
-    public ResponseEntity<List<CategoryDto>> getAllCategoriesTest() {
+    public ResponseEntity<List<CategoryDto>> getAllCategoriesTest(Pageable pageable) {
         return ResponseEntity.ok().build();
     }
 
