@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @RestController
@@ -16,17 +17,20 @@ public class CategoryController {
     CategoryService categoryService;
 
     @GetMapping
-    public ResponseEntity<List<CategoryDto>> getAllCategories(){
+    public ResponseEntity<List<CategoryDto>> getAllCategories() {
         //List<CategoryDto> allCategories = categoryService.getDeleted();
         List<CategoryDto> allCategories = categoryService.getAllCategories();
-        return  ResponseEntity.ok(allCategories);
+        return ResponseEntity.ok(allCategories);
+    }
+
+    @GetMapping("test")
+    public ResponseEntity<List<CategoryDto>> getAllCategoriesTest() {
+        return ResponseEntity.ok().build();
     }
 
 
-
-
     @PostMapping
-    public ResponseEntity<Void> addCategory(@RequestBody CategoryDto category){
+    public ResponseEntity<Void> addCategory(@RequestBody CategoryDto category) {
 
         categoryService.addCategory(category);
 
@@ -34,15 +38,14 @@ public class CategoryController {
     }
 
 
-
     @PutMapping
-    public ResponseEntity<Void> updateCategory(@RequestBody CategoryDto categoryDto){
-         categoryService.updateCategory(categoryDto);
+    public ResponseEntity<Void> updateCategory(@RequestBody CategoryDto categoryDto) {
+        categoryService.updateCategory(categoryDto);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCategory(@PathVariable("id") int id){
+    public ResponseEntity<Void> deleteCategory(@PathVariable("id") int id) {
         categoryService.deleteCategory(id);
         return ResponseEntity.ok().build();
 
